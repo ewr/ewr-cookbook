@@ -1,0 +1,5 @@
+export PATH=<%= @dir %>/bin:$PATH
+
+<% (@env||{}).each do |k,v| %>
+export <%= k %>=<%= v %>
+<% end %>
