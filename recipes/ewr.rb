@@ -15,6 +15,14 @@ end
 
 dir = "#{node.ewr.app_path}/ewr"
 
+# -- Make asset_images directory -- #
+
+directory "/data/ewr/asset_images" do
+  action    :create
+  owner     "ewr"
+  recursive true
+end
+
 # -- Install the Site File -- #
 
 nginx_passenger_site "ewr" do
