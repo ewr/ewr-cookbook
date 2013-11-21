@@ -3,6 +3,7 @@ include_recipe "nginx_passenger"
 # -- Pre-reqs -- #
 
 package "imagemagick"
+package "libimage-exiftool-perl"
 
 # -- Create a User and Directory -- #
 
@@ -31,6 +32,13 @@ nginx_passenger_site "ewr" do
   server      "ewr.is"
   ruby        "/usr/bin/ruby1.9.1"
   rails_env   "production"
+end
+
+# -- Install some redirects -- #
+
+template "/etc/nginx/sites-enabled/ewr-redirects" do
+  action    :create
+  notifies  :reload, "service[nginx]"
 end
 
 # -- Install Lifeguard and Tasks -- #
